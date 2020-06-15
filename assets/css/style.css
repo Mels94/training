@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #aaa;
+}
+
+.row .col-md-3{
+    margin-bottom: 20px;
+}
+
+.row .content {
+    border: 1px solid black;
+}
