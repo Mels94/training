@@ -8,27 +8,37 @@ use application\models\Cinema;
 
 class SiteController extends BaseController
 {
-  public function actionIndex(){
+    public function actionIndex()
+    {
+        $cinema = new Cinema();
+        $nowDateFilms = $cinema->nowDayFilms();
 
-    $cinema = new Cinema();
-    $arrCinema = $cinema->getCinema();
+        $arrCinema = $cinema->getCinema();
 
-    $this->view->setTitle('Cinema');
-    $this->view->render('site/index', $arrCinema);
-    return true;
-  }
+        $this->view->setTitle('Cinema');
+        $this->view->render('site/index', [$nowDateFilms, $arrCinema]);
+        return true;
+    }
 
-  public function actionSingle_cinema(){
+    public function actionSingle_cinema($id)
+    {
+        $films = new Cinema($id);
+        $SingleCinemaFilms = $films->getFilms();
 
-    $films = new Cinema();
-    $arrFilms = $films->getFilms();
+        $this->view->setTitle('Single Cinema');
+        $this->view->render('site/single_cinema', $SingleCinemaFilms);
+        return true;
+    }
 
-    $this->view->setTitle('Single Cinema');
-    $this->view->render('site/single_cinema', $arrFilms);
-    return true;
-  }
+    public function actionDateTime(){
 
-  public function actionError(){
-    echo 'Action Error';
-  }
+        $dataTime = new Cinema($_POST['film']);
+        echo json_encode($dataTime->dataTime());
+        die;
+    }
+
+    public function actionError()
+    {
+        echo 'Action Error';
+    }
 }

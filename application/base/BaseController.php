@@ -5,11 +5,11 @@ namespace application\base;
 
 class BaseController
 {
-  protected $view;
+    protected $view;
 
-  public function __construct()
-  {
-    $this->view = new BaseView();
-    $this->view->setLayout('main');
-  }
+    public function __construct()
+    {
+        $this->view = new BaseView();
+        $this->view->setLayout('main');
+    }
 }

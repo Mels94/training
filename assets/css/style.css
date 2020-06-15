@@ -2,8 +2,18 @@
     box-sizing: border-box;
 }
 
+header{
+    height: 100px;
+    background-color: deepskyblue;
+}
+
+footer{
+    height: 100px;
+    background-color: deepskyblue;
+}
+
 body {
-    background-color: #aaa;
+    background-color: #ddd;
 }
 
 .row .col-md-3{
