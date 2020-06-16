@@ -1,4 +1,4 @@
-<a href="/" class="btn btn-primary mt-2"><< Home page</a>
+<a href="/" class="btn btn-primary mt-2"><< Homepage</a>
 
 <h2 class="text-center"><?= $data[0][0]['name']; ?> Kinotatron</h2>
 
@@ -16,10 +16,8 @@
 <div class="container">
     <div class="mt-5">
         <input type="text" id="datepicker1" placeholder="Start date">
-
         <input type="text" id="datepicker2" placeholder="End date">
-
-        <button id="datepicker_btn" class="btn btn-success">Go</button>
+        <button id="datepicker_btn" class="btn btn-success">Search</button>
     </div>
 
 
@@ -32,8 +30,8 @@
                          data-name="<?= $item['name']; ?> (<?= $item['date'] ?>)">
                         <div class="content">
                             <img src="<?= ASSETS ?>images/films/<?= $item['image_path']; ?>" alt="Mountains"
-                                 style="width:100%; height: 200px">
-                            <h5><?= $item['name']; ?> </h5><span class=""><?= $item['date_kino']; ?></span>
+                                 style="width:100%; height: 250px">
+                            <h5><?= $item['name']; ?> <span><?= $item['date_kino']; ?></span></h5>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -58,8 +56,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

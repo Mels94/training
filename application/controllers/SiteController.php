@@ -12,9 +12,7 @@ class SiteController extends BaseController
     {
         $cinema = new Cinema();
         $nowDateFilms = $cinema->nowDayFilms();
-
         $arrCinema = $cinema->getCinema();
-
         $this->view->setTitle('Cinema');
         $this->view->render('site/index', [$nowDateFilms, $arrCinema]);
         return true;
@@ -40,38 +38,34 @@ class SiteController extends BaseController
 
     public function actionDatepicker()
     {
-        $dataPicker = new Cinema(null, $_POST['start'], $_POST['end']);
+        $dataPicker = new Cinema($_POST['id'], $_POST['start'], $_POST['end']);
         echo json_encode($dataPicker->datepicker());
         die;
     }
 
     public function actionRow()
     {
-        $arrRow = [];
         $row = new Cinema($_POST['id']);
         $data = $row->rowAll();
-        //$columnCount = $row->columnCount();
-        //$rowCount = $row->rowCount();
-
-        /*    $count = 0;
-            for ($i = 0; $i <= count($data); $i++) {
-              //var_dump($data[$i]['column_id']);
-
-              if ($data[$i]['column_id'] != $data[$i + 1]['column_id']) {
-                $count++;
-                $arrRow[$count] = [];
-              }
-              array_push($arrRow[$count], ['id' => $data[$i+1]['id']]);
-            }*/
-
         $checkoutSeats = $row->checkoutSeats();
         echo json_encode(['list' => $data, 'checkout' => $checkoutSeats]);
         die;
     }
 
+    public function actionOkChecked()
+    {
+        $insertOrder = new Cinema($_POST['row'], $_POST['time']);
+        if ($insertOrder->insertOrder()){
+            echo json_encode(1);
+            die;
+        }
+    }
 
     public function actionError()
     {
-        echo 'Action Error';
+        $this->view->setLayout('error');
+        $this->view->setTitle('error');
+        $this->view->render('layout/error', []);
+        return true;
     }
 }

@@ -17,6 +17,10 @@ return [
       'controller' => 'site',
       'action' => 'datepicker'
     ],
+    'site/okChecked' => [
+        'controller' => 'site',
+        'action' => 'okChecked'
+    ],
     'site/row' => [
       'controller' => 'site',
       'action' => 'row'

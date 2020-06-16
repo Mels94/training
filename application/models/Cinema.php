@@ -66,8 +66,12 @@ class Cinema
 
     public function datepicker()
     {
+        $andWhere = '';
+        if (isset($this->id)) {
+            $andWhere = " AND cinema_id = {$this->id} ";
+        }
         $select = Db::getConnection()->prepare("SELECT * FROM `films` WHERE `date`>='$this->start' 
-            AND `date`<='$this->end'");
+            AND `date`<='$this->end' $andWhere");
         $select->execute();
         return $select->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -80,35 +84,26 @@ class Cinema
         $column->execute();
         $list = $column->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($list as $index => $item) {
-            $line_count =  Db::getConnection()->prepare("SELECT * FROM `row` where `column_id` = {$item['id']}");
+            $line_count = Db::getConnection()->prepare("SELECT * FROM `row` WHERE `column_id` = {$item['id']}");
             $line_count->execute();
-            $line_count =  $line_count->fetchAll(\PDO::FETCH_ASSOC);
-            array_push($test ,$line_count);
+            $line_count = $line_count->fetchAll(\PDO::FETCH_ASSOC);
+            array_push($test, $line_count);
         }
         return $test;
     }
-
-/*    public function columnCount()
-    {
-        $select = Db::getConnection()->prepare("SELECT `column_id` FROM `row` GROUP BY `column_id`");
-        $select->execute();
-        //return $count = $select->rowCount();
-        return $select->fetchAll(\PDO::FETCH_ASSOC);
-    }
-
-    public function rowCount()
-    {
-        $select = Db::getConnection()->prepare("SELECT `number` FROM `row` GROUP BY `number`");
-        $select->execute();
-        //return $count = $select->rowCount();
-        return $select->fetchAll(\PDO::FETCH_ASSOC);
-    }*/
 
     public function checkoutSeats()
     {
         $select = Db::getConnection()->prepare("SELECT * FROM `checked` WHERE `date_time_id`='$this->id'");
         $select->execute();
         return $select->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function insertOrder()
+    {
+        $insert = Db::getConnection()->prepare("INSERT INTO `checked` (`date_time_id`, `row_id`) VALUES (?,?)");
+        $insert->execute([$this->start, $this->id]);
+        return true;
     }
 
 
