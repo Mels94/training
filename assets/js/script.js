@@ -36,9 +36,6 @@ $(document).ready(function () {
 
 
     $(document).on('change', '.change-date-film', function () {
-
-        //modal.find('.add-date-line').html('<tr>efgr</tr>');
-
       let id = $(this).val();
       $.ajax({
         url: window.location.origin + '/site/row',
@@ -47,16 +44,16 @@ $(document).ready(function () {
         data: {id: id},
         success: function (data) {
           console.log(data);
-
-
-/*          $('.remove').remove();
-          $.each([1,2], function (i, item) {
+          $('.remove').remove();
+          $.each(data.list, function (i, item) {
             modal.find('.add-date-line').append(`<tr class="tr_td remove">             
                                      </tr>`);
+              $.each(data.list[i], function (j, value) {
+                  console.log(value);
+                  $('.tr_td').append(`<td data-id="${value.id}">${value.number}</td>`);
+              });
           });
-          $.each([9,15,5,8], function (j, value) {
-            $('.tr_td').append(`<td></td>`)
-          });*/
+
         }
       })
 
@@ -80,7 +77,6 @@ $(document).ready(function () {
           $('.all_films .row').remove();
           $('.all_films h3').remove();
           $.each(data, function (i, item) {
-            console.log(item);
             $('.all_films').append(`
               <div class="row">
                     <div class="col-md-3 open-film-modal" data-id="${item.id}" data-name="${item.name} (${item.date})">

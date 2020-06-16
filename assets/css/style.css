@@ -26,12 +26,22 @@ body {
 
 .single_cinema{
     display: flex;
+    margin-left: 20px;
 }
 
 .single_cinema img{
     width: 400px;
     height: 300px;
 }
+
+.cinema_info{
+    margin-left: 20px;
+}
+
+.cinema_info p{
+    font-size: 20px;
+}
+
 .add-date-line .tr_td td{
     width: 50px;
     height: 50px;
