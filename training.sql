@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Июн 16 2020 г., 00:46
--- Версия сервера: 8.0.19
--- Версия PHP: 7.4.5
+-- Host: localhost:3306
+-- Generation Time: Jun 16, 2020 at 07:45 PM
+-- Server version: 5.7.30-0ubuntu0.18.04.1
+-- PHP Version: 7.3.10-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,29 +17,39 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `training`
+-- Database: `training`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `checked`
+-- Table structure for table `checked`
 --
 
 CREATE TABLE `checked` (
-  `id` int NOT NULL,
-  `date_time_id` int NOT NULL,
-  `row_id` int NOT NULL
+  `id` int(11) NOT NULL,
+  `date_time_id` int(11) NOT NULL,
+  `row_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `checked`
+--
+
+INSERT INTO `checked` (`id`, `date_time_id`, `row_id`) VALUES
+(1, 4, 15),
+(2, 7, 26),
+(3, 6, 30),
+(4, 9, 26);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cinemas`
+-- Table structure for table `cinemas`
 --
 
 CREATE TABLE `cinemas` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -49,7 +58,7 @@ CREATE TABLE `cinemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `cinemas`
+-- Dumping data for table `cinemas`
 --
 
 INSERT INTO `cinemas` (`id`, `name`, `city`, `address`, `phone`, `image_path`) VALUES
@@ -65,16 +74,16 @@ INSERT INTO `cinemas` (`id`, `name`, `city`, `address`, `phone`, `image_path`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `column`
+-- Table structure for table `column`
 --
 
 CREATE TABLE `column` (
-  `id` int NOT NULL,
-  `number` int NOT NULL
+  `id` int(11) NOT NULL,
+  `number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `column`
+-- Dumping data for table `column`
 --
 
 INSERT INTO `column` (`id`, `number`) VALUES
@@ -86,43 +95,43 @@ INSERT INTO `column` (`id`, `number`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `data_time`
+-- Table structure for table `data_time`
 --
 
 CREATE TABLE `data_time` (
-  `id` int NOT NULL,
-  `film_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `film_id` int(11) NOT NULL,
   `start` time NOT NULL,
   `end` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `data_time`
+-- Dumping data for table `data_time`
 --
 
 INSERT INTO `data_time` (`id`, `film_id`, `start`, `end`) VALUES
 (1, 3, '13:00:00', '14:30:00'),
 (2, 4, '15:30:00', '17:00:00'),
 (3, 2, '15:00:00', '16:00:00'),
-(4, 3, '17:00:00', '19:00:00'),
-(5, 10, '11:00:00', '13:37:20'),
+(4, 3, '15:30:00', '17:00:00'),
+(5, 10, '11:00:00', '13:00:00'),
 (6, 4, '15:00:00', '17:00:00'),
-(7, 8, '18:00:00', '20:00:00'),
-(8, 3, '15:30:00', '17:00:00'),
+(7, 8, '15:30:00', '17:00:00'),
+(8, 3, '17:00:00', '19:00:00'),
 (9, 1, '14:30:00', '16:00:00'),
 (10, 6, '15:00:00', '17:00:00'),
 (11, 9, '17:00:00', '19:00:00'),
-(12, 8, '15:30:00', '17:00:00');
+(12, 8, '18:00:00', '20:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `films`
+-- Table structure for table `films`
 --
 
 CREATE TABLE `films` (
-  `id` int NOT NULL,
-  `cinema_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `cinema_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date_kino` varchar(255) NOT NULL,
   `image_path` varchar(255) NOT NULL,
@@ -130,7 +139,7 @@ CREATE TABLE `films` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `films`
+-- Dumping data for table `films`
 --
 
 INSERT INTO `films` (`id`, `cinema_id`, `name`, `date_kino`, `image_path`, `date`) VALUES
@@ -148,35 +157,67 @@ INSERT INTO `films` (`id`, `cinema_id`, `name`, `date_kino`, `image_path`, `date
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `row`
+-- Table structure for table `row`
 --
 
 CREATE TABLE `row` (
-  `id` int NOT NULL,
-  `column_id` int NOT NULL,
-  `number` int NOT NULL
+  `id` int(11) NOT NULL,
+  `column_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `row`
+-- Dumping data for table `row`
 --
 
 INSERT INTO `row` (`id`, `column_id`, `number`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 2, 1),
-(4, 2, 2),
-(5, 3, 1),
-(6, 3, 2),
-(7, 4, 1),
-(8, 4, 2);
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10),
+(11, 2, 1),
+(12, 2, 2),
+(13, 2, 3),
+(14, 2, 4),
+(15, 2, 5),
+(16, 2, 6),
+(17, 2, 7),
+(18, 2, 8),
+(19, 2, 9),
+(20, 2, 10),
+(21, 3, 1),
+(22, 3, 2),
+(23, 3, 3),
+(24, 3, 4),
+(25, 3, 5),
+(26, 3, 6),
+(27, 3, 7),
+(28, 3, 8),
+(29, 3, 9),
+(30, 3, 10),
+(31, 4, 1),
+(32, 4, 2),
+(33, 4, 3),
+(34, 4, 4),
+(35, 4, 5),
+(36, 4, 6),
+(37, 4, 7),
+(38, 4, 8),
+(39, 4, 9),
+(40, 4, 10);
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `checked`
+-- Indexes for table `checked`
 --
 ALTER TABLE `checked`
   ADD PRIMARY KEY (`id`),
@@ -184,107 +225,100 @@ ALTER TABLE `checked`
   ADD KEY `row_id` (`row_id`);
 
 --
--- Индексы таблицы `cinemas`
+-- Indexes for table `cinemas`
 --
 ALTER TABLE `cinemas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `column`
+-- Indexes for table `column`
 --
 ALTER TABLE `column`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `data_time`
+-- Indexes for table `data_time`
 --
 ALTER TABLE `data_time`
   ADD PRIMARY KEY (`id`),
   ADD KEY `film_id` (`film_id`);
 
 --
--- Индексы таблицы `films`
+-- Indexes for table `films`
 --
 ALTER TABLE `films`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cinema_id` (`cinema_id`);
 
 --
--- Индексы таблицы `row`
+-- Indexes for table `row`
 --
 ALTER TABLE `row`
   ADD PRIMARY KEY (`id`),
   ADD KEY `column_id` (`column_id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `checked`
+-- AUTO_INCREMENT for table `checked`
 --
 ALTER TABLE `checked`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT для таблицы `cinemas`
+-- AUTO_INCREMENT for table `cinemas`
 --
 ALTER TABLE `cinemas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT для таблицы `column`
+-- AUTO_INCREMENT for table `column`
 --
 ALTER TABLE `column`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT для таблицы `data_time`
+-- AUTO_INCREMENT for table `data_time`
 --
 ALTER TABLE `data_time`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT для таблицы `films`
+-- AUTO_INCREMENT for table `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT для таблицы `row`
+-- AUTO_INCREMENT for table `row`
 --
 ALTER TABLE `row`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+--
+-- Constraints for dumped tables
+--
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
---
-
---
--- Ограничения внешнего ключа таблицы `checked`
+-- Constraints for table `checked`
 --
 ALTER TABLE `checked`
   ADD CONSTRAINT `checked_ibfk_1` FOREIGN KEY (`date_time_id`) REFERENCES `data_time` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `checked_ibfk_2` FOREIGN KEY (`row_id`) REFERENCES `row` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `data_time`
+-- Constraints for table `data_time`
 --
 ALTER TABLE `data_time`
   ADD CONSTRAINT `data_time_ibfk_1` FOREIGN KEY (`film_id`) REFERENCES `films` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `films`
+-- Constraints for table `films`
 --
 ALTER TABLE `films`
   ADD CONSTRAINT `films_ibfk_1` FOREIGN KEY (`cinema_id`) REFERENCES `cinemas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `row`
+-- Constraints for table `row`
 --
 ALTER TABLE `row`
   ADD CONSTRAINT `row_ibfk_1` FOREIGN KEY (`column_id`) REFERENCES `column` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

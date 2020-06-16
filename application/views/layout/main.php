@@ -8,15 +8,19 @@
     <title><?= $this->getTitle(); ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= ASSETS ?>css/style.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="<?= ASSETS ?>css/style.css">
     <script src="<?= ASSETS ?>js/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?= ASSETS ?>js/script.js"></script>
+
+
 </head>
 <body>
 
 
 <header>
-    <h1>Header</h1>
+    <h3 class="text-center text-white">Header</h3>
 </header>
 
 <?php if (!empty($content) && isset($content)): ?>
@@ -24,7 +28,7 @@
 <?php endif; ?>
 
 <footer>
-    <h1>Footer</h1>
+    <h3 class="text-center text-white">Footer</h3>
 </footer>
 
 

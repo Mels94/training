@@ -13,6 +13,14 @@ return [
         'controller' => 'site',
         'action' => 'dateTime'
     ],
+    'site/datepicker' => [
+      'controller' => 'site',
+      'action' => 'datepicker'
+    ],
+    'site/row' => [
+      'controller' => 'site',
+      'action' => 'row'
+    ],
     'error' => [
         'controller' => 'site',
         'action' => 'error'

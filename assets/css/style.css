@@ -3,12 +3,12 @@
 }
 
 header{
-    height: 100px;
+    height: 50px;
     background-color: deepskyblue;
 }
 
 footer{
-    height: 100px;
+    height: 50px;
     background-color: deepskyblue;
 }
 
@@ -21,5 +21,20 @@ body {
 }
 
 .row .content {
+    border: 1px solid black;
+}
+
+.single_cinema{
+    display: flex;
+}
+
+.single_cinema img{
+    width: 400px;
+    height: 300px;
+}
+.add-date-line .tr_td td{
+    width: 50px;
+    height: 50px;
+    background-color: green;
     border: 1px solid black;
 }
